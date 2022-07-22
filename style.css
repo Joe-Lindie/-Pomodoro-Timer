@@ -1,0 +1,96 @@
+/* BASIC STYLING */
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+:root {
+    --BG-red: #D95550;
+    --container-red: #DD6864;
+    --spare-red:#CA4E49;
+    --font-colour: #F2F3F5; 
+}
+
+  /* GENERIC STYLING */
+
+  body {
+    background-color: var(--BG-red);
+    color: var(--font-colour);
+  }
+
+  button {
+    cursor: pointer;
+    padding: 3px;
+    color: var(--font-colour);
+    border: none;
+    background-color: transparent;
+    padding: 0.3rem;
+    border-radius: 5px;
+  }
+
+  button:hover{
+    background-color: var(--spare-red);
+    font-weight: bold;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .margin_bottom {
+    margin-bottom: 1rem;
+  }
+
+    /* SPECIFIC STYLING SMALL MOBILE */
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+      }
+    
+      .underline {
+        height: 0.5px;
+        border: none;
+        background-color: rgb(115, 112, 112);
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        margin-bottom: 1rem;
+      }
+
+    .timer_container {
+        background-color: var(--container-red);
+        margin: auto;
+        width: 90%;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    #countdown_timer {
+        font-size: 3rem;
+        font-weight: bold;
+        letter-spacing: 3px;
+    }
+
+    #start_btn,
+    #stop_btn  {
+        background-color: var(--font-colour);
+        color: var(--BG-red);
+        margin-right: 0.5rem;
+    }
+
+ 
+
+
+
+
