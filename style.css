@@ -33,6 +33,7 @@ html {
     background-color: transparent;
     padding: 0.3rem;
     border-radius: 5px;
+    margin-right: 1.5rem;
   }
 
   button:hover{
@@ -44,6 +45,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
 
   .margin_bottom {
@@ -51,6 +53,12 @@ html {
   }
 
     /* SPECIFIC STYLING SMALL MOBILE */
+
+    .logo {
+      width: 1.5rem;
+      height: auto;
+      margin-right: 0.5rem;
+    }
 
     h1 {
         text-align: center;
@@ -89,6 +97,27 @@ html {
         margin-right: 0.5rem;
     }
 
+
+      /* TABLET MEDIA QUERY BREAKPOINT */
+
+      @media (min-width: 768px) {
+        .timer_container {
+          width: 50%;
+          padding: 3rem;
+        }
+      }
+
+      /* DESKTOP MEDIA QUERY BREAKPOINT */
+
+      @media (min-width: 1024px) {
+        .timer_container {
+          width: 40%;
+        }
+
+        #countdown_timer  {
+          font-size: 6rem;
+        }
+      }
  
 
 
