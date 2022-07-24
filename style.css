@@ -45,6 +45,10 @@ html {
     margin-bottom: 1rem;
   }
 
+  .margin_top {
+    margin-top: 1rem;
+  }
+
     /* SPECIFIC STYLING SMALL MOBILE */
 
     .logo {
@@ -81,6 +85,7 @@ html {
         font-weight: bold;
         letter-spacing: 3px;
     }
+
 
       /* TABLET MEDIA QUERY BREAKPOINT */
 

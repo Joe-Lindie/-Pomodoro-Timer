@@ -5,11 +5,19 @@ const longBreak = document.getElementById("long_break")
 const countdowntimerOutput = document.getElementById("countdown_timer")
 const startBtn = document.getElementById("start_btn")
 const stopBtn = document.getElementById("stop_btn")
+const studyMsg = document.getElementById("study_msg")
 
 // EVENTLISTENERS
 pomodoro.addEventListener("click", studyCountdown)
 shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
+startBtn.addEventListener("click", startCountdown)
+stopBtn.addEventListener("click", stopCountdown)
+
+// GLOBAL VARIABLES
+let minutes = 24
+let seconds = 60
+let time
 
 ////////////////////////////////////
 
@@ -61,14 +69,44 @@ function longererBreakStyling() {
 function studyCountdown() {
   pomodoroStyling()
   countdowntimerOutput.innerHTML = "25:00"
+  studyMsg.innerHTML = "Time to focus!"
 }
+
+studyCountdown()
 
 function shorterBreak() {
   shorterBreakStyling()
   countdowntimerOutput.innerHTML = "05:00"
+  studyMsg.innerHTML = "Time for a break!"
 }
 
 function longerBreak() {
   longererBreakStyling()
   countdowntimerOutput.innerHTML = "15:00"
+  studyMsg.innerHTML = "Time for a break!"
+}
+
+function startCountdown() {
+  if (seconds > 0) {
+    seconds = seconds - 1
+  } else {
+    seconds = 60
+  }
+
+  if (minutes > 0 && seconds === 0) {
+    minutes = minutes - 1
+  }
+
+  if (minutes === 0 && seconds === 0) {
+    alert("Time for a break!")
+    return
+  }
+
+  time = setTimeout(startCountdown, 1000)
+
+  countdowntimerOutput.innerHTML = `${minutes}:${seconds}`
+}
+
+function stopCountdown() {
+  clearTimeout(time)
 }
