@@ -8,7 +8,7 @@ const stopBtn = document.getElementById("stop_btn")
 const studyMsg = document.getElementById("study_msg")
 
 // EVENTLISTENERS
-pomodoro.addEventListener("click", studyCountdown)
+pomodoro.addEventListener("click", pomodoroStudy)
 shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
 startBtn.addEventListener("click", startCountdown)
@@ -17,8 +17,8 @@ startBtn.addEventListener("click", clickSound)
 stopBtn.addEventListener("click", clickSound)
 
 // GLOBAL VARIABLES
-let minutes = 24
-let seconds = 60
+let minutes
+let seconds
 let time
 
 ////////////////////////////////////
@@ -68,24 +68,57 @@ function longererBreakStyling() {
 
 ////////////////////////////////////
 
-function studyCountdown() {
+function pomodoroStudy() {
   pomodoroStyling()
+
+  minutes = 24
+  seconds = 60
+
+  // Stops timer when any break option clicked
+  clearTimeout(time)
+
   countdowntimerOutput.innerHTML = "25:00"
-  studyMsg.innerHTML = "Time to focus!"
+  studyMsg.innerHTML = "Time to study!"
 }
 
-studyCountdown()
+pomodoroStudy()
+
+////////////////////////////////////
 
 function shorterBreak() {
   shorterBreakStyling()
+
+  minutes = 4
+  seconds = 60
+
+  // Stops timer when any break option clicked
+  clearTimeout(time)
+
+  // NEED TO ADD CONFIRM IF STATMENT HERE
   countdowntimerOutput.innerHTML = "05:00"
   studyMsg.innerHTML = "Time for a break!"
 }
 
+////////////////////////////////////
+
 function longerBreak() {
   longererBreakStyling()
+
+  minutes = 14
+  seconds = 60
+
+  // Stops timer when any break option clicked
+  clearTimeout(time)
+
   countdowntimerOutput.innerHTML = "15:00"
   studyMsg.innerHTML = "Time for a break!"
+}
+
+////////////////////////////////////
+
+function clickSound() {
+  let clickSound = new Audio("Audio/Click-sound.mp3")
+  clickSound.play()
 }
 
 ////////////////////////////////////
@@ -118,11 +151,8 @@ function startCountdown() {
   countdowntimerOutput.innerHTML = `${min}:${sec}`
 }
 
+////////////////////////////////////
+
 function stopCountdown() {
   clearTimeout(time)
-}
-
-function clickSound() {
-  let clickSound = new Audio("Audio/Click-sound.mp3")
-  clickSound.play()
 }
