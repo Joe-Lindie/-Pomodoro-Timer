@@ -70,12 +70,10 @@ function longererBreakStyling() {
 
 function pomodoroStudy() {
   pomodoroStyling()
+  clearTimeout(time)
 
   minutes = 24
   seconds = 60
-
-  // Stops timer when any break option clicked
-  clearTimeout(time)
 
   countdowntimerOutput.innerHTML = "25:00"
   studyMsg.innerHTML = "Time to study!"
@@ -87,12 +85,10 @@ pomodoroStudy()
 
 function shorterBreak() {
   shorterBreakStyling()
+  clearTimeout(time)
 
   minutes = 4
   seconds = 60
-
-  // Stops timer when any break option clicked
-  clearTimeout(time)
 
   // NEED TO ADD CONFIRM IF STATMENT HERE
   countdowntimerOutput.innerHTML = "05:00"
@@ -103,12 +99,10 @@ function shorterBreak() {
 
 function longerBreak() {
   longererBreakStyling()
+  clearTimeout(time)
 
   minutes = 14
   seconds = 60
-
-  // Stops timer when any break option clicked
-  clearTimeout(time)
 
   countdowntimerOutput.innerHTML = "15:00"
   studyMsg.innerHTML = "Time for a break!"
@@ -139,7 +133,8 @@ function startCountdown() {
   }
 
   if (minutes === 0 && seconds === 0) {
-    alert("Time for a break!")
+    alert("It's time for a break!")
+    shorterBreak()
     return
   }
 
