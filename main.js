@@ -13,6 +13,8 @@ shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
 startBtn.addEventListener("click", startCountdown)
 stopBtn.addEventListener("click", stopCountdown)
+startBtn.addEventListener("click", clickSound)
+stopBtn.addEventListener("click", clickSound)
 
 // GLOBAL VARIABLES
 let minutes = 24
@@ -86,6 +88,12 @@ function longerBreak() {
   studyMsg.innerHTML = "Time for a break!"
 }
 
+////////////////////////////////////
+
+// COUNTDOWN FUNCTIONALITY FUNCTION
+
+////////////////////////////////////
+
 function startCountdown() {
   if (seconds > 0) {
     seconds = seconds - 1
@@ -104,9 +112,17 @@ function startCountdown() {
 
   time = setTimeout(startCountdown, 1000)
 
-  countdowntimerOutput.innerHTML = `${minutes}:${seconds}`
+  let sec = seconds < 10 ? "0" + seconds : seconds
+  let min = minutes < 10 ? "0" + minutes : minutes
+
+  countdowntimerOutput.innerHTML = `${min}:${sec}`
 }
 
 function stopCountdown() {
   clearTimeout(time)
+}
+
+function clickSound() {
+  let clickSound = new Audio("Audio/Click-sound.mp3")
+  clickSound.play()
 }
