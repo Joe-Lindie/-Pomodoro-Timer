@@ -72,8 +72,8 @@ function pomodoroStudy() {
   pomodoroStyling()
   clearTimeout(time)
 
-  minutes = 0
-  seconds = 5
+  minutes = 24
+  seconds = 60
 
   countdowntimerOutput.innerHTML = "25:00"
   studyMsg.innerHTML = "Time to study!"
@@ -87,8 +87,8 @@ function shorterBreak() {
   shorterBreakStyling()
   clearTimeout(time)
 
-  minutes = 0
-  seconds = 5
+  minutes = 4
+  seconds = 60
 
   // NEED TO ADD CONFIRM IF STATMENT HERE
   countdowntimerOutput.innerHTML = "05:00"
@@ -161,5 +161,13 @@ function startCountdown() {
 ////////////////////////////////////
 
 function stopCountdown() {
+  if (minutes > 0 || seconds > 0) {
+    if (confirm("Are you sure you wish to end this session early?") == true) {
+      shorterBreak()
+    } else {
+      return
+    }
+  }
+
   clearTimeout(time)
 }
