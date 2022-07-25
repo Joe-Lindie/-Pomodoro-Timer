@@ -72,8 +72,8 @@ function pomodoroStudy() {
   pomodoroStyling()
   clearTimeout(time)
 
-  minutes = 24
-  seconds = 60
+  minutes = 0
+  seconds = 5
 
   countdowntimerOutput.innerHTML = "25:00"
   studyMsg.innerHTML = "Time to study!"
@@ -87,8 +87,8 @@ function shorterBreak() {
   shorterBreakStyling()
   clearTimeout(time)
 
-  minutes = 4
-  seconds = 60
+  minutes = 0
+  seconds = 5
 
   // NEED TO ADD CONFIRM IF STATMENT HERE
   countdowntimerOutput.innerHTML = "05:00"
@@ -111,8 +111,13 @@ function longerBreak() {
 ////////////////////////////////////
 
 function clickSound() {
-  let clickSound = new Audio("Audio/Click-sound.mp3")
+  const clickSound = new Audio("Audio/Click-sound.mp3")
   clickSound.play()
+}
+
+function finishedSound() {
+  const finishedSound = new Audio("Audio/success.mp3")
+  finishedSound.play()
 }
 
 ////////////////////////////////////
@@ -133,8 +138,15 @@ function startCountdown() {
   }
 
   if (minutes === 0 && seconds === 0) {
-    alert("It's time for a break!")
-    shorterBreak()
+    finishedSound()
+
+    countdowntimerOutput.innerHTML = "00:00"
+
+    //Wait 4 seconds before calling shorterBreak()
+    setTimeout(function () {
+      shorterBreak()
+    }, 4000)
+
     return
   }
 
