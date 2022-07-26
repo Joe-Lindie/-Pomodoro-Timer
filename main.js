@@ -3,23 +3,23 @@ const pomodoro = document.getElementById("pomodoro")
 const shortBreak = document.getElementById("short_break")
 const longBreak = document.getElementById("long_break")
 const countdowntimerOutput = document.getElementById("countdown_timer")
-const startBtn = document.getElementById("start_btn")
-const stopBtn = document.getElementById("stop_btn")
+const startStopBtn = document.getElementById("start_stop_btn")
 const studyMsg = document.getElementById("study_msg")
 
 // EVENTLISTENERS
 pomodoro.addEventListener("click", pomodoroStudy)
 shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
-startBtn.addEventListener("click", startCountdown)
-stopBtn.addEventListener("click", stopCountdown)
-startBtn.addEventListener("click", clickSound)
-stopBtn.addEventListener("click", clickSound)
+startStopBtn.addEventListener("click", startStop)
+startStopBtn.addEventListener("click", clickSound)
+startStopBtn.addEventListener("click", clickSound)
 
 // GLOBAL VARIABLES
 let minutes
 let seconds
 let time
+let isRunning = false
+startStopBtn.innerHTML = "START"
 
 ////////////////////////////////////
 
@@ -34,8 +34,8 @@ function pomodoroStyling() {
   pomodoro.style.backgroundColor = "#D95550"
   shortBreak.style.backgroundColor = "transparent"
   longBreak.style.backgroundColor = "transparent"
-  startBtn.style.color = "#CA4E49"
-  stopBtn.style.color = "#CA4E49"
+  startStopBtn.style.color = "#CA4E49"
+  startStopBtn.style.color = "#CA4E49"
 }
 
 pomodoroStyling()
@@ -47,8 +47,8 @@ function shorterBreakStyling() {
   pomodoro.style.backgroundColor = "transparent"
   longBreak.style.backgroundColor = "transparent"
   shortBreak.style.backgroundColor = "#4B8F93"
-  startBtn.style.color = "#4B8F93"
-  stopBtn.style.color = "#4B8F93"
+  startStopBtn.style.color = "#4B8F93"
+  startStopBtn.style.color = "#4B8F93"
 }
 
 function longererBreakStyling() {
@@ -58,8 +58,8 @@ function longererBreakStyling() {
   longBreak.style.backgroundColor = "#447CA3"
   pomodoro.style.backgroundColor = "transparent"
   shortBreak.style.backgroundColor = "transparent"
-  startBtn.style.color = "#447CA3"
-  stopBtn.style.color = "#447CA3"
+  startStopBtn.style.color = "#447CA3"
+  startStopBtn.style.color = "#447CA3"
 }
 
 ////////////////////////////////////
@@ -71,9 +71,10 @@ function longererBreakStyling() {
 function pomodoroStudy() {
   pomodoroStyling()
   clearTimeout(time)
+  startStopBtn.innerHTML = "START"
 
-  minutes = 24
-  seconds = 60
+  minutes = 0
+  seconds = 5
 
   countdowntimerOutput.innerHTML = "25:00"
   studyMsg.innerHTML = "Time to study!"
@@ -86,6 +87,7 @@ pomodoroStudy()
 function shorterBreak() {
   shorterBreakStyling()
   clearTimeout(time)
+  startStopBtn.innerHTML = "START"
 
   minutes = 4
   seconds = 60
@@ -100,6 +102,7 @@ function shorterBreak() {
 function longerBreak() {
   longererBreakStyling()
   clearTimeout(time)
+  startStopBtn.innerHTML = "START"
 
   minutes = 14
   seconds = 60
@@ -122,11 +125,24 @@ function finishedSound() {
 
 ////////////////////////////////////
 
+function startStop() {
+  if (isRunning) {
+    isRunning = false
+    return stopCountdown()
+  }
+  isRunning = true
+  startCountdown()
+}
+
+////////////////////////////////////
+
 // COUNTDOWN FUNCTIONALITY FUNCTION
 
 ////////////////////////////////////
 
 function startCountdown() {
+  startStopBtn.innerHTML = "STOP"
+
   if (seconds > 0) {
     seconds = seconds - 1
   } else {
@@ -161,13 +177,15 @@ function startCountdown() {
 ////////////////////////////////////
 
 function stopCountdown() {
-  if (minutes > 0 || seconds > 0) {
-    if (confirm("Are you sure you wish to end this session early?") == true) {
-      shorterBreak()
-    } else {
-      return
-    }
-  }
+  startStopBtn.innerHTML = "START"
+
+  // if (minutes > 0 || seconds > 0) {
+  //   if (confirm("Are you sure you wish to end this session early?") == true) {
+  //     shorterBreak()
+  //   } else {
+  //     return
+  //   }
+  // }
 
   clearTimeout(time)
 }
