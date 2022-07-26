@@ -12,14 +12,12 @@ shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
 startStopBtn.addEventListener("click", startStop)
 startStopBtn.addEventListener("click", clickSound)
-startStopBtn.addEventListener("click", clickSound)
 
 // GLOBAL VARIABLES
 let minutes
 let seconds
 let time
 let isRunning = false
-startStopBtn.innerHTML = "START"
 
 ////////////////////////////////////
 
@@ -73,8 +71,8 @@ function pomodoroStudy() {
   clearTimeout(time)
   startStopBtn.innerHTML = "START"
 
-  minutes = 0
-  seconds = 5
+  minutes = 24
+  seconds = 60
 
   countdowntimerOutput.innerHTML = "25:00"
   studyMsg.innerHTML = "Time to study!"
@@ -92,7 +90,6 @@ function shorterBreak() {
   minutes = 4
   seconds = 60
 
-  // NEED TO ADD CONFIRM IF STATMENT HERE
   countdowntimerOutput.innerHTML = "05:00"
   studyMsg.innerHTML = "Time for a break!"
 }
