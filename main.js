@@ -18,6 +18,7 @@ let minutes
 let seconds
 let timeInterval
 let isRunning = false
+let stage = "work"
 
 ////////////////////////////////////
 
@@ -70,6 +71,7 @@ function pomodoroStudy() {
   pomodoroStyling()
   startStopBtn.innerHTML = "START"
 
+  stage = "work"
   minutes = 24
   seconds = 60
 
@@ -85,6 +87,7 @@ function shorterBreak() {
   shorterBreakStyling()
   startStopBtn.innerHTML = "START"
 
+  stage = "break"
   minutes = 4
   seconds = 60
 
@@ -132,7 +135,7 @@ function startStop() {
   timeIntervals()
 }
 
-///////////////////////////
+////////////////////////////////////
 
 function timeIntervals() {
   timeInterval = setInterval(startCountdown, 1000)
@@ -157,16 +160,15 @@ function startCountdown() {
     minutes = minutes - 1
   }
 
-  if (minutes === 0 && seconds === 0) {
-    finishedSound()
-    shorterBreak()
-    return
-  }
-
   let sec = seconds < 10 ? "0" + seconds : seconds
   let min = minutes < 10 ? "0" + minutes : minutes
 
   countdowntimerOutput.innerHTML = `${min}:${sec}`
+
+  if (minutes === 0 && seconds === 0) {
+    finishedSound()
+    stage === "work" ? shorterBreak() : pomodoroStudy()
+  }
 }
 
 ////////////////////////////////////
