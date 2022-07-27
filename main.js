@@ -16,7 +16,7 @@ startStopBtn.addEventListener("click", clickSound)
 // GLOBAL VARIABLES
 let minutes
 let seconds
-let time
+let timeInterval
 let isRunning = false
 
 ////////////////////////////////////
@@ -62,13 +62,12 @@ function longererBreakStyling() {
 
 ////////////////////////////////////
 
-// FUNCTIONS
+// STUDY/BREAK TIME FUNCTIONS
 
 ////////////////////////////////////
 
 function pomodoroStudy() {
   pomodoroStyling()
-  clearTimeout(time)
   startStopBtn.innerHTML = "START"
 
   minutes = 24
@@ -84,7 +83,6 @@ pomodoroStudy()
 
 function shorterBreak() {
   shorterBreakStyling()
-  clearTimeout(time)
   startStopBtn.innerHTML = "START"
 
   minutes = 4
@@ -98,7 +96,6 @@ function shorterBreak() {
 
 function longerBreak() {
   longererBreakStyling()
-  clearTimeout(time)
   startStopBtn.innerHTML = "START"
 
   minutes = 14
@@ -107,6 +104,10 @@ function longerBreak() {
   countdowntimerOutput.innerHTML = "15:00"
   studyMsg.innerHTML = "Time for a break!"
 }
+
+////////////////////////////////////
+
+// AUDIO FUNCTIONS
 
 ////////////////////////////////////
 
@@ -128,7 +129,13 @@ function startStop() {
     return stopCountdown()
   }
   isRunning = true
-  startCountdown()
+  timeIntervals()
+}
+
+///////////////////////////
+
+function timeIntervals() {
+  timeInterval = setInterval(startCountdown, 1000)
 }
 
 ////////////////////////////////////
@@ -152,18 +159,9 @@ function startCountdown() {
 
   if (minutes === 0 && seconds === 0) {
     finishedSound()
-
-    countdowntimerOutput.innerHTML = "00:00"
-
-    //Wait 4 seconds before calling shorterBreak()
-    setTimeout(function () {
-      shorterBreak()
-    }, 4000)
-
+    shorterBreak()
     return
   }
-
-  time = setTimeout(startCountdown, 1000)
 
   let sec = seconds < 10 ? "0" + seconds : seconds
   let min = minutes < 10 ? "0" + minutes : minutes
@@ -175,14 +173,5 @@ function startCountdown() {
 
 function stopCountdown() {
   startStopBtn.innerHTML = "START"
-
-  // if (minutes > 0 || seconds > 0) {
-  //   if (confirm("Are you sure you wish to end this session early?") == true) {
-  //     shorterBreak()
-  //   } else {
-  //     return
-  //   }
-  // }
-
-  clearTimeout(time)
+  clearInterval(timeInterval)
 }
