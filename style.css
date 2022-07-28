@@ -112,8 +112,12 @@ h1 {
 }
 
 .checked {
-  opacity: 0.5;
+  opacity: 0.3;
   text-decoration: line-through;
+}
+
+ .toggle {
+  margin-left: 2rem;
 }
 
 /* TABLET MEDIA QUERY BREAKPOINT */
