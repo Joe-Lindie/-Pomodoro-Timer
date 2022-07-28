@@ -214,6 +214,7 @@ function newTask(event) {
   <div class="view">
     <label> ${num}. ${newTodoItem}</label>
     <input class="toggle" type="checkbox">
+    <button class="remove">🗑️</button>
   </div> `
 
   newTodo.innerHTML = todoContent
@@ -243,4 +244,20 @@ function checkItemsOffList(event) {
     let parentDiv = event.target.parentNode
     parentDiv.classList.remove("checked")
   }
+}
+
+////////////////////////////////////
+
+// DELETE ITEM OFF LIST
+
+////////////////////////////////////
+
+taskToComplete.addEventListener("click", function (e) {
+  if (e.target && e.target.matches(".remove")) {
+    deleteItemsOffList(e)
+  }
+})
+
+function deleteItemsOffList(event) {
+  event.target.parentNode.remove()
 }

@@ -120,6 +120,10 @@ h1 {
   margin-left: 2rem;
 }
 
+.remove {
+  background-color: transparent;
+}
+
 /* TABLET MEDIA QUERY BREAKPOINT */
 
 @media (min-width: 768px) {
