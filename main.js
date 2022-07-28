@@ -6,12 +6,18 @@ const countdowntimerOutput = document.getElementById("countdown_timer")
 const startStopBtn = document.getElementById("start_stop_btn")
 const studyMsg = document.getElementById("study_msg")
 
+const userTask = document.getElementById("user_tasks")
+const addTask = document.getElementById("add_task")
+const taskToComplete = document.getElementById("tasks_to_complete")
+
 // EVENTLISTENERS
 pomodoro.addEventListener("click", pomodoroStudy)
 shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
 startStopBtn.addEventListener("click", startStop)
 startStopBtn.addEventListener("click", clickSound)
+
+addTask.addEventListener("click", newTask)
 
 // GLOBAL VARIABLES
 let minutes
@@ -34,7 +40,11 @@ function pomodoroStyling() {
   shortBreak.style.backgroundColor = "transparent"
   longBreak.style.backgroundColor = "transparent"
   startStopBtn.style.color = "#CA4E49"
-  startStopBtn.style.color = "#CA4E49"
+
+  const taskBg = document.getElementById("user_tasks")
+  taskBg.style.backgroundColor = "#DD6864"
+
+  addTask.style.color = "#CA4E49"
 }
 
 pomodoroStyling()
@@ -47,7 +57,10 @@ function shorterBreakStyling() {
   longBreak.style.backgroundColor = "transparent"
   shortBreak.style.backgroundColor = "#4B8F93"
   startStopBtn.style.color = "#4B8F93"
-  startStopBtn.style.color = "#4B8F93"
+
+  const taskBg = document.getElementById("user_tasks")
+  taskBg.style.backgroundColor = "#619DA0"
+  addTask.style.color = "#4B8F93"
 }
 
 function longererBreakStyling() {
@@ -58,7 +71,10 @@ function longererBreakStyling() {
   pomodoro.style.backgroundColor = "transparent"
   shortBreak.style.backgroundColor = "transparent"
   startStopBtn.style.color = "#447CA3"
-  startStopBtn.style.color = "#447CA3"
+
+  const taskBg = document.getElementById("user_tasks")
+  taskBg.style.backgroundColor = "#5A8AAD"
+  addTask.style.color = "#447CA3"
 }
 
 ////////////////////////////////////
@@ -176,4 +192,22 @@ function startCountdown() {
 function stopCountdown() {
   startStopBtn.innerHTML = "START"
   clearInterval(timeInterval)
+}
+
+////////////////////////////////////
+
+// TASKS SECTION
+
+////////////////////////////////////
+
+function newTask(event) {
+  event.preventDefault()
+
+  if (userTask.value === "") return
+
+  const newTodo = document.createElement("ol")
+  newTodo.classList.add("new_todo")
+  newTodo.innerHTML = userTask.value
+  taskToComplete.append(newTodo)
+  userTask.value = ""
 }
