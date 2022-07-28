@@ -107,6 +107,11 @@ html {
       margin-bottom: 1rem;
     }
 
+    .checked {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
       /* TABLET MEDIA QUERY BREAKPOINT */
 
       @media (min-width: 768px) {

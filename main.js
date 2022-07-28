@@ -5,7 +5,6 @@ const longBreak = document.getElementById("long_break")
 const countdowntimerOutput = document.getElementById("countdown_timer")
 const startStopBtn = document.getElementById("start_stop_btn")
 const studyMsg = document.getElementById("study_msg")
-
 const userTask = document.getElementById("user_tasks")
 const addTask = document.getElementById("add_task")
 const taskToComplete = document.getElementById("tasks_to_complete")
@@ -16,7 +15,6 @@ shortBreak.addEventListener("click", shorterBreak)
 longBreak.addEventListener("click", longerBreak)
 startStopBtn.addEventListener("click", startStop)
 startStopBtn.addEventListener("click", clickSound)
-
 addTask.addEventListener("click", newTask)
 
 // GLOBAL VARIABLES
@@ -43,7 +41,6 @@ function pomodoroStyling() {
 
   const taskBg = document.getElementById("user_tasks")
   taskBg.style.backgroundColor = "#DD6864"
-
   addTask.style.color = "#CA4E49"
 }
 
@@ -203,11 +200,44 @@ function stopCountdown() {
 function newTask(event) {
   event.preventDefault()
 
+  const newTodoItem = userTask.value
+
   if (userTask.value === "") return
 
   const newTodo = document.createElement("ol")
   newTodo.classList.add("new_todo")
-  newTodo.innerHTML = userTask.value
+
+  const todoContent = `
+  <div class="view">
+    <label>${newTodoItem}</label>
+    <input class="toggle" type="checkbox">
+  </div> `
+
+  newTodo.innerHTML = todoContent
   taskToComplete.append(newTodo)
   userTask.value = ""
+}
+
+////////////////////////////////////
+
+// CHECK ITEM OFF LIST
+
+////////////////////////////////////
+
+taskToComplete.addEventListener("click", function (e) {
+  if (e.target && e.target.matches(".toggle")) {
+    checkItemsOffList(e)
+  }
+})
+
+function checkItemsOffList(event) {
+  if (event.target.checked) {
+    let parentDiv = event.target.parentNode
+    parentDiv.classList.add("checked")
+  }
+
+  if (event.target.checked === false) {
+    let parentDiv = event.target.parentNode
+    parentDiv.classList.remove("checked")
+  }
 }
