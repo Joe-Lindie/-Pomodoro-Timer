@@ -199,7 +199,7 @@ function stopCountdown() {
 ////////////////////////////////////
 
 function newTask(event) {
-  event.preventDefault()
+  event && event.preventDefault()
 
   const newTodoItem = userTask.value
 
@@ -211,14 +211,14 @@ function newTask(event) {
   newTodo.classList.add("new_todo")
 
   const todoContent = `
-  <div class="view">
     <label> ${num}. ${newTodoItem}</label>
     <input class="toggle" type="checkbox">
-    <button class="remove">🗑️</button>
-  </div> `
+    <button class="remove">🗑️</button>   
+ `
 
   newTodo.innerHTML = todoContent
   taskToComplete.append(newTodo)
+
   userTask.value = ""
 }
 
