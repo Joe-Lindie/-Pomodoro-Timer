@@ -23,7 +23,6 @@ let seconds
 let timeInterval
 let isRunning = false
 let stage = "work"
-let num = 0
 
 ////////////////////////////////////
 
@@ -205,23 +204,34 @@ function newTask(event) {
 
   if (userTask.value === "") return
 
-  addTask && userTask.value === "" ? (num = num) : (num = num + 1)
+  renderTask(newTodoItem)
 
+  userTask.value = ""
+
+  localStorage.setItem(newTodoItem, "task")
+}
+
+let arr = Object.keys(localStorage)
+
+arr.forEach((item) => renderTask(item))
+
+function renderTask(newTodoItem) {
   const newTodo = document.createElement("ol")
   newTodo.classList.add("new_todo")
 
+  const newLabel = document.createElement("label")
+  newLabel.textContent = newTodoItem
+
   const todoContent = `
-    <label> ${num}. ${newTodoItem}</label>
     <input class="toggle" type="checkbox">
-    <button class="remove">🗑️</button>   
+    <button class="remove">🗑️</button> 
  `
 
   newTodo.innerHTML = todoContent
+  newTodo.append(newLabel)
+
   taskToComplete.append(newTodo)
-
-  userTask.value = ""
 }
-
 ////////////////////////////////////
 
 // CHECK ITEM OFF LIST
@@ -259,5 +269,9 @@ taskToComplete.addEventListener("click", function (e) {
 })
 
 function deleteItemsOffList(event) {
+  const currentTaskText =
+    event.target.parentNode.querySelector("label").textContent
+
+  localStorage.removeItem(currentTaskText)
   event.target.parentNode.remove()
 }
