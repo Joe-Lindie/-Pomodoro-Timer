@@ -137,6 +137,11 @@ function finishedSound() {
   finishedSound.play()
 }
 
+function deleteSound() {
+  const deleteSound = new Audio("Audio/delete.mov")
+  deleteSound.play()
+}
+
 ////////////////////////////////////
 
 function startStop() {
@@ -211,9 +216,13 @@ function newTask(event) {
   localStorage.setItem(newTodoItem, "task")
 }
 
+////////////////////////////////////
+
 let arr = Object.keys(localStorage)
 
 arr.forEach((item) => renderTask(item))
+
+////////////////////////////////////
 
 function renderTask(newTodoItem) {
   const newTodo = document.createElement("ol")
@@ -243,6 +252,8 @@ taskToComplete.addEventListener("click", function (e) {
     checkItemsOffList(e)
   }
 })
+
+////////////////////////////////////
 
 function checkItemsOffList(event) {
   if (event.target.checked) {
@@ -274,4 +285,5 @@ function deleteItemsOffList(event) {
 
   localStorage.removeItem(currentTaskText)
   event.target.parentNode.remove()
+  deleteSound()
 }
