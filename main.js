@@ -182,7 +182,9 @@ function startCountdown() {
   let min = minutes < 10 ? "0" + minutes : minutes
 
   countdowntimerOutput.innerHTML = `${min}:${sec}`
+  document.title = `${min}:${sec}`
 
+  //Toggle between pomodoro timer & 5 min break
   if (minutes === 0 && seconds === 0) {
     finishedSound()
     stage === "work" ? shorterBreak() : pomodoroStudy()
